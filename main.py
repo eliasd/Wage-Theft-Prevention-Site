@@ -15,11 +15,47 @@
 # limitations under the License.
 #
 import webapp2
+import jinja2
+import os
+from google.appengine.api import users
+
+env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        main_template = env.get_template('main.html')
+
+        #
+        user = users.get_current_user()
+        if user:
+            greet = ('Welcome, %s! (<a href="%s">sign out</a>)') % (user.nickname(), users.create_logout_url('/'))
+        else:
+            greet = ('<a href="%s">Sign in or register</a>.' ) % (users.create_login_url('/finlog'))
+
+        greetingdict = {'greeting':greet}
+        self.response.write(main_template.render(greetingdict))
+
+class FinancialLogHandler(webapp2.RequestHandler):
+    def get(self):
+        f_template = env.get_template('finlog.html')
+
+        # Generating Signout Link
+        user=users.get_current_user()
+        signout_greeting = ('%s (<a href="%s">Log Out</a>)') % (user.nickname(), users.create_logout_url('/'))
+
+
+        # Financial Log Dictionary
+        financial_log_dict = {'signout':signout_greeting}
+
+        self.response.write(f_template.render(financial_log_dict))
+
+    def post(self):
+        f_results_template
+
+
+
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/finlog',FinancialLogHandler)
 ], debug=True)
