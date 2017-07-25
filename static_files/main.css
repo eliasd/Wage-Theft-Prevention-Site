@@ -13,23 +13,34 @@ h1 {
 }
 .cover1{
    display: flex;
-   width: 40%;
- }
- .cover1 img {
-   width: auto;
-   margin: 20px;
+   width: 30%;
  }
 
  #farmer {
    height: 50%;
-   text-align: left;
+ }
+ .left{
+   position: absolute;
+   left: 90px;
+   width: 300px;
  }
 
  #woman {
    height: 50%;
-   text-align: center;
  }
+.middle {
+  position: absolute;
+  right: 700px;
+  width: 300px;
+}
+
+
 #man {
   height: 50%;
-  text-align: right;
+}
+.right {
+    position: absolute;
+    right: 400px;
+    width: 300px;
+
 }
