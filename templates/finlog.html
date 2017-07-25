@@ -67,9 +67,10 @@
 <div id="result">
   <h1>Result:</h1>
 <p>
-    {% if financial_log_dict and alert in financial_log_dict and financial_log_dict.alert == 2 %}
+
+    {% if alert and alert == 2 %}
       (no bueno!)
-    {% elif financial_log_dict and financial_log_dict.alert == 1 %}
+    {% elif alert and alert == 1 %}
       (all good)
     {% else %}
       (no)
