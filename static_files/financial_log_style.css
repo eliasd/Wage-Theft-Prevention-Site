@@ -1,0 +1,47 @@
+#header{
+  border: 3px solid black;
+  text-align: left;
+}
+#check_info{
+  border: 3px solid black;
+  min-width: 600px;
+  width: 80%;
+  padding: 20px;
+  margin: auto;
+  border-radius: 20px;
+}
+.time_in_hour{
+  width: 300px;
+  height: 30px;
+  font-size: 14pt;
+  border: 2px solid black;
+  margin: 3px 1px 3px 0px;
+}
+.time_in_min{
+  width: 150px;
+  height: 30px;
+  font-size: 14pt;
+  border: 2px solid black;
+  margin: 3px 0px 3px 1px;
+}
+.time_out_hour{
+  width: 300px;
+  height: 30px;
+  font-size: 14pt;
+  border: 2px solid black;
+  margin: 3px 1px 3px 0px;
+}
+.time_out_min{
+  width: 150px;
+  height: 30px;
+  font-size: 14pt;
+  border: 2px solid black;
+  margin: 3px 0px 3px 1px;
+}
+#status{
+  width: 150px;
+  height: 30px;
+  font-size: 14pt;
+  border: 2px solid black;
+  display: block;
+}
