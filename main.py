@@ -87,10 +87,44 @@ class FinancialLogHandler(webapp2.RequestHandler):
             query_result.put()
         else:
             (User(user_id=userID,time_worked=time_worked,marital_status=marital_status,total_california_tax=total_tax)).put()
-        self.response.write(f_template.render())
+
+        financial_log_dict  = {'time_worked': time_worked,'total_california_tax':total_tax}
+        self.response.write(f_template.render(financial_log_dict))
+
+class FinancialLogCheckHandler(webapp2.RequestHandler):
+    def post(self):
+        f_template = env.get_template('finlog.html')
+
+        # Generating Signout Link
+        user=users.get_current_user()
+        userID = user.user_id()
+        signout_greeting = ('%s (<a href="%s">Log Out</a>)') % (user.nickname(), users.create_logout_url('/'))
+
+        pay_check = float(self.request.get('pay_check'))
+        #code: #1: ok; #2: not ok
+        alert_notification = 0
+
+        #Compare pay_check vs wage_stubs
+        query_result = User.query(User.user_id==userID).get()
+        if query_result and query_result.user_id == userID:
+            estimated_pay = query_result.time_worked * 10.50
+            if estimated_pay < pay_check - 20:
+                alert_notification = 2
+            else:
+                alert_notification = 1
+        else:
+            self.response.write('user is not in database!')
+
+        # for now we reset the user's time worked; in future create database for daily stubs
+        query_result.time_worked = 0
+        query_result.put()
+
+        financial_log_dict = {'alert':alert_notification}
+        self.response.write(f_template = env.get_template(f_template.render(financial_log_dict)))
 
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/finlog',FinancialLogHandler)
+    ('/finlog',FinancialLogHandler),
+    ('/finlog-check',FinancialLogCheckHandler)
 ], debug=True)
