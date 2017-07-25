@@ -87,6 +87,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
             query_result.put()
         else:
             (User(user_id=userID,time_worked=time_worked,marital_status=marital_status,total_california_tax=total_tax)).put()
+        self.response.write(f_template.render())
 
 
 app = webapp2.WSGIApplication([
