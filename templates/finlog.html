@@ -65,9 +65,9 @@
       </div>
     </div>
 
-    {% if alert in financial_log_dict and alert == 2 %}
+    {% if alert in financial_log_dict and financial_log_dict.alert == 2 %}
       (no bueno!)
-    {% elif alert == 1 %}
+    {% elif financial_log_dict.alert == 1 %}
       (all good)
     {%endif%}
 
