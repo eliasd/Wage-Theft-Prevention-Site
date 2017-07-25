@@ -68,11 +68,12 @@ class FinancialLogHandler(webapp2.RequestHandler):
         time_of_day_out = (self.request.get('time_of_day_out'))
 
         break_time_length = int(self.request.get('break_time_length'))
+
         marital_status = int(self.request.get('marital_status'))
         userID = user.user_id()
 
         #Total Time Worked:
-        time_worked = time_calc(clock_in_hour,clock_out_hour,clock_in_min,clock_out_min,time_of_day_in,time_of_day_out)
+        time_worked = time_calc(clock_in_hour,clock_out_hour,clock_in_min,clock_out_min,time_of_day_in,time_of_day_out) - (break_time_length/60.0)
 
         total_tax = 0
         if marital_status == 2:
