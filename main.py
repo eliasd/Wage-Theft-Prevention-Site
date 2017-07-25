@@ -56,12 +56,22 @@ class FinancialLogHandler(webapp2.RequestHandler):
         signout_greeting = ('%s (<a href="%s">Log Out</a>)') % (user.nickname(), users.create_logout_url('/'))
 
         #Request the Wage Variables
-        clock_in_hour = self.request.get('time_in_hour')
-        clock_in_minute = self.request.get('time_in_min')
-        clock_out_hour = self.request.get('time_out_hour')
-        clock_out_min = self.request.get('time_out_min')
-        break_time_length = self.request.get('break_time_length')
+        clock_in_hour = int(self.request.get('time_in_hour'))
+        clock_in_minute = int(self.request.get('time_in_min'))
+        time_of_day_in = (self.request.get('time_of_day_in'))
+
+        clock_out_hour = int(self.request.get('time_out_hour'))
+        clock_out_min = int(self.request.get('time_out_min'))
+        time_of_day_out = (self.request.get('time_of_day_out'))
+        break_time_length = int(self.request.get('break_time_length'))
         marital_status = int(self.request.get('marital_status'))
+        userID = user.user_id()
+
+        #Total Time Worked:
+        if time_of_day_in.upper().trim()=='AM':
+            
+
+
 
 
 
