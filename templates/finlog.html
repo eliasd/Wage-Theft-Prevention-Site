@@ -67,7 +67,7 @@
 
     {% if alert in financial_log_dict and alert == 2 %}
       (all good!)
-    {% else %}
+    {% elif alert == 1 %}
       (no bueno)
     {%endif%}
 
