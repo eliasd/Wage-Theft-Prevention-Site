@@ -51,7 +51,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
 
         self.response.write(f_template.render(financial_log_dict))
 
-    def post1(self):
+    def post(self):
         f_template = env.get_template('finlog.html')
 
         # Generating Signout Link
