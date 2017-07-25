@@ -111,7 +111,7 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         if query_result and query_result.user_id == userID:
             estimated_pay = (query_result.time_worked * 10.50) - ((query_result.total_california_tax)/100)*(query_result.time_worked * 10.50)
             logging.info('estimated pay: '+str(estimated_pay))
-            if estimated_pay < pay_check - 20:
+            if  pay_check - 20 < estimated_pay:
                 alert_notification = 2
             else:
                 alert_notification = 1
