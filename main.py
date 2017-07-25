@@ -116,12 +116,14 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         else:
             self.response.write('user is not in database!')
 
+        logging.info(alert_notification)
+
         # for now we reset the user's time worked; in future create database for daily stubs
         query_result.time_worked = 0
         query_result.put()
 
         financial_log_dict = {'alert':alert_notification}
-        self.response.write(f_template = env.get_template(f_template.render(financial_log_dict)))
+        self.response.write(f_template.render(financial_log_dict))
 
 
 app = webapp2.WSGIApplication([

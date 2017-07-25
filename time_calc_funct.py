@@ -1,3 +1,6 @@
+import logging
+
+
 def time_calc(clock_in_hour,clock_out_hour,clock_in_min,clock_out_min,time_of_day_in,time_of_day_out):
     total_min = 0
     total_hour = 0
