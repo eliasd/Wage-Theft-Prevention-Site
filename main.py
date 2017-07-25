@@ -72,7 +72,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
 
         #Total Time Worked:
         time_worked = time_calc(clock_in_hour,clock_out_hour,clock_in_min,clock_out_min,time_of_day_in,time_of_day_out)
-        
+
         total tax = 0
         if marital_status == 2:
             total_tax = 6.20 + 1.45 + 0.90
@@ -80,20 +80,12 @@ class FinancialLogHandler(webapp2.RequestHandler):
             total_tax = 6.20 + 1.45 + 0.90 + 1.315
 
         # Check if user is in database: if not create datastore element; otherwise simply modify
-        (User(user_id=userID,time_worked=time_worked,marital_status=marital_status,total_california_tax=total_tax)).put()
-
-
-
-
-
-
-
-
-
-
-
-
-
+        query_result = User.query(User.user_id==userID).get()
+        if query_result and query_result.user_id == userID:
+            query_result.time_worked = query_result.time_worked + time_worked
+            query_result.put()
+        else:
+            (User(user_id=userID,time_worked=time_worked,marital_status=marital_status,total_california_tax=total_tax)).put()
 
 
 app = webapp2.WSGIApplication([
