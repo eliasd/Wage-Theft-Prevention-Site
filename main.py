@@ -102,13 +102,15 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         signout_greeting = ('%s (<a href="%s">Log Out</a>)') % (user.nickname(), users.create_logout_url('/'))
 
         pay_check = float(self.request.get('pay_check'))
+        logging.info("paycheck = "+ str(pay_check))
         #code: #1: ok; #2: not ok
         alert_notification = 0
 
         #Compare pay_check vs wage_stubs
         query_result = User.query(User.user_id==userID).get()
         if query_result and query_result.user_id == userID:
-            estimated_pay = (query_result.time_worked * 10.50) - (query_result.total_california_tax)*(query_result.time_worked * 10.50)
+            estimated_pay = (query_result.time_worked * 10.50) - ((query_result.total_california_tax)/100)*(query_result.time_worked * 10.50)
+            logging.info('estimated pay: '+str(estimated_pay))
             if estimated_pay < pay_check - 20:
                 alert_notification = 2
             else:
