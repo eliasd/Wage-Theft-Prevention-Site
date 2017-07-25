@@ -1,15 +1,17 @@
 #slides {
     height: auto;
     width: auto;
-    max-width: 1050px;
-    max-height: 900px;
+    max-width: 1250px;
+    max-height: 970px;
     display: block;
     margin: auto;
 }
 
 h1 {
-  font-family: Slabo;
+  font-family: 'Istok Web', sans-serif;
   text-align: center;
+  font-size: 40pt;
+  font-weight: lighter;
 }
 .cover1{
    display: flex;
@@ -30,7 +32,7 @@ h1 {
  }
 .middle {
   position: absolute;
-  right: 700px;
+  right: 685px;
   width: 300px;
 }
 
@@ -40,7 +42,7 @@ h1 {
 }
 .right {
     position: absolute;
-    right: 400px;
+    right: 370px;
     width: 300px;
 
 }
