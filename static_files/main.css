@@ -13,6 +13,14 @@ h1 {
   font-size: 40pt;
   font-weight: lighter;
 }
+h3{
+  font-family: 'Glegoo', serif;
+  font-size: 50px;
+}
+p{
+  font-family: 'Sorts Mill Goudy', serif;
+  font-size: 30px;
+}
 .cover1{
    display: flex;
    width: 30%;
@@ -46,6 +54,7 @@ h1 {
     width: 300px;
 }
 
+/* Style the tab buttons */
 .tablink {
     background-color: #555;
     color: white;
@@ -57,14 +66,20 @@ h1 {
     font-size: 17px;
     width: 25%;
 }
+
+/* Change background color of buttons on hover */
 .tablink:hover {
     background-color: #777;
 }
+
+/* Set default styles for tab content */
 .tabcontent {
     color: white;
     display: none;
     padding: 50px;
     text-align: center;
 }
-#topheader {background-color:blue;}
-#Signin {background-color:lightblue;}
+
+/* Style each tab content individually */
+#TabHeader {background-color:tan;}
+#SignIn {background-color:saddlebrown;}
