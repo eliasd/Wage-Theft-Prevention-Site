@@ -43,15 +43,23 @@ class FinancialLogHandler(webapp2.RequestHandler):
         user=users.get_current_user()
         signout_greeting = ('%s (<a href="%s">Log Out</a>)') % (user.nickname(), users.create_logout_url('/'))
 
-
         # Financial Log Dictionary
         financial_log_dict = {'signout':signout_greeting}
 
         self.response.write(f_template.render(financial_log_dict))
 
     def post(self):
-        f_results_template
+        f_template = env.get_template('finlog.html')
 
+        # Generating Signout Link
+        user=users.get_current_user()
+        signout_greeting = ('%s (<a href="%s">Log Out</a>)') % (user.nickname(), users.create_logout_url('/'))
+
+        #Request the Wage Variables
+        clock_in_time = self.request.get('time_in')
+        clock_out_time = self.request.get('time_out')
+        break_time_length = self.request.get('break_time_length')
+        marital_status = self.request.get('marital_status')
 
 
 
