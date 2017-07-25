@@ -1,25 +1,35 @@
+#slides {
+    height: auto;
+    width: auto;
+    max-width: 1050px;
+    max-height: 900px;
+    display: block;
+    margin: auto;
+}
+
 h1 {
   font-family: Slabo;
   text-align: center;
 }
 .cover1{
    display: flex;
+   width: 40%;
  }
  .cover1 img {
    width: auto;
-   margin: 15px;
+   margin: 20px;
  }
 
  #farmer {
-   height: 400px;
+   height: 50%;
    text-align: left;
  }
 
  #woman {
-   height: 400px;
+   height: 50%;
    text-align: center;
  }
 #man {
-  height: 400px;
+  height: 50%;
   text-align: right;
 }
