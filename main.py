@@ -123,7 +123,8 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         financial_log_dict = {
                 'alert':alert_notification,
                 'pay_check':pay_check,
-                'estimated_pay':estimated_pay
+                'estimated_pay':estimated_pay,
+                'signout': signout_greeting
                 }
         self.response.write(f_template.render(financial_log_dict))
 
