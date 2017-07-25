@@ -121,7 +121,6 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         query_result.put()
 
         financial_log_dict = {'alert':alert_notification}
-        logging.info(financial_log_dict)
         self.response.write(f_template.render(financial_log_dict))
 
 
