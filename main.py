@@ -120,7 +120,11 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         query_result.time_worked = 0
         query_result.put()
 
-        financial_log_dict = {'alert':alert_notification}
+        financial_log_dict = {
+                'alert':alert_notification,
+                'pay_check':pay_check,
+                'estimated_pay':estimated_pay
+                }
         self.response.write(f_template.render(financial_log_dict))
 
 
