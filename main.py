@@ -33,7 +33,7 @@ class MainHandler(webapp2.RequestHandler):
         if user:
             greet = ('Welcome, %s! (<a href="%s">sign out</a>)') % (user.nickname(), users.create_logout_url('/'))
         else:
-            greet = ('<a href="%s">Sign in or register</a>.' ) % (users.create_login_url('/finlog'))
+            greet = ('<a href="%s">Sign in</a>.' ) % (users.create_login_url('/finlog'))
 
         greetingdict = {'greeting':greet}
         self.response.write(main_template.render(greetingdict))
