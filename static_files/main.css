@@ -1,0 +1,25 @@
+h1 {
+  font-family: Slabo;
+  text-align: center;
+}
+.cover1{
+   display: flex;
+ }
+ .cover1 img {
+   width: auto;
+   margin: 15px;
+ }
+
+ #farmer {
+   height: 400px;
+   text-align: left;
+ }
+
+ #woman {
+   height: 400px;
+   text-align: center;
+ }
+#man {
+  height: 400px;
+  text-align: right;
+}

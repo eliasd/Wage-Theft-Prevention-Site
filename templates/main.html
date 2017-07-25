@@ -1,10 +1,52 @@
 <html>
 <head>
-
-
+  <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+      <link rel="stylesheet" href="main.css"/>
+    <title>
+        Under Construction: Wage Theft Prevension
+    </title>
 </head>
 
 <body>
   <p>{{greeting}}</p>
+  <section>
+  <img class="mySlides" src="bill-603243_1920.jpg" style="width:100%">
+  <img class="mySlides" src="person-1245789_1920.jpg" style="width:100%">
+  <img class="mySlides" src="fences-2111886_1920.jpg" style="width:100%">
+</section>
+
+<script>
+// Automatic Slideshow - change image every 3 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 5000);
+}
+</script>
+  <h1> Wage Theft: Why is it important? </h1>
+
+  <div class="photo">
+        <div class="cover1">
+        <img id="farmer" src="farmer.jpg">
+
+        <img id="woman" src="haiti.jpg">
+        <img id="man" src="construction.jpg">
+      </div>
+
+
+
+
+
 </body>
 </html>
