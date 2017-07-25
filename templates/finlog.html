@@ -8,17 +8,19 @@
 </head>
 
 <body>
+  <!-- tab to redirect to different pages-->
   <div id="header">
     <!-- insert tab line-->
     {{signout}}
   </div>
 
   <h1> Update Your Wages for Today! </h1>
-
+  <!--div to put all of wage calc -->
   <div id="check_info">
+    <!--wage calc form to get users information and upload to datastorage-->
     <div id="form">
-      <form method="post" action ="">
-
+      <form method="post" action ="/finlog">
+        <!--asks for variables-->
         <div id="time">
           <div type="times">
            <h3>Clock in Hour: <input type="number" name="time_in_hour"/></h3>
@@ -30,7 +32,7 @@
            <h3>Breaktime length:<input type="number" name="break_time_length"/></h3>
           </div>
         </div>
-
+        <!--asks for status using radio button-->
         <div id="status">
            <h3>Choose one: </h3>
            <input type="radio" name="marital_status" value="1">Dual income or Single
@@ -42,10 +44,27 @@
         </div>
 
       </form>
+    <h1> Paycheck</h1>
+    <!--div to put all of pay stub -->
+    <div id="pay_checks">
+      <!--pay stub form to ask for check-->
+      <div id ="form2">
+        <form method="post" action="/finlog-check">
+          <!--asks for check info -->
+          <div id="check">
+            <div type="checks">
+            <h3>How much was your paycheck? <input type="number" name="pay_check"/></h3>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    <div id="check">
 
-
+    {% if alert in financial_log_dict and alert == 2 %}
+      (all good!)
+    {% else %}
+      (no bueno)
+    {%endif%}
     </div>
     <div>
   </div>
