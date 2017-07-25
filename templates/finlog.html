@@ -13,10 +13,10 @@
     <!-- insert tab line-->
     {{signout}}
   </div>
-
-  <h1> Update Your Wages for Today! </h1>
+  <h1>Wage Calculater</h1>
   <!--div to put all of wage calc -->
   <div id="check_info">
+    <h1> Update Your Wages for Today! </h1>
     <!--wage calc form to get users information and upload to datastorage-->
     <div id="form">
       <form method="post" action ="/finlog">
@@ -64,7 +64,7 @@
         </form>
       </div>
     </div>
-<div>
+<div id="result">
   <h1>Result:</h1>
 <p>
     {% if financial_log_dict and alert in financial_log_dict and financial_log_dict.alert == 2 %}
@@ -74,7 +74,7 @@
     {% else %}
       (no)
     {%endif%}
-    </p>
+</p>
 </div>
 
 

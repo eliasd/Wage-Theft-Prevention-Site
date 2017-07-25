@@ -51,5 +51,12 @@
   padding: 20px;
   margin: auto;
   border-radius: 20px;
-  margin-left: auto;
+}
+#result{
+  border: 3px solid black;
+  min-width: 900px;
+  width: 500px ;
+  padding: 20px;
+  margin: auto;
+  border-radius: 20px;
 }
