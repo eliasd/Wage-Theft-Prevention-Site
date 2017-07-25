@@ -107,7 +107,7 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         #Compare pay_check vs wage_stubs
         query_result = User.query(User.user_id==userID).get()
         if query_result and query_result.user_id == userID:
-            estimated_pay = query_result.time_worked * 10.50
+            estimated_pay = (query_result.time_worked * 10.50) - (query_result.total_california_tax)*(query_result.time_worked * 10.50)
             if estimated_pay < pay_check - 20:
                 alert_notification = 2
             else:
