@@ -5,7 +5,7 @@
 #check_info{
   border: 3px solid black;
   min-width: 900px;
-  width: ;
+  width: 500px ;
   padding: 20px;
   margin: auto;
   border-radius: 20px;
@@ -38,10 +38,13 @@
   border: 2px solid black;
   margin: 3px 0px 3px 1px;
 }
-#status{
+/*#status{
   width: 150px;
   height: 30px;
   font-size: 14pt;
-  border: 2px solid black;
   display: block;
+}*/
+#pay_checks{
+  border: 3px soild black;
+  padding: 20px;
 }
