@@ -45,6 +45,11 @@
   display: block;
 }*/
 #pay_checks{
-  border: 3px soild black;
+  border: 3px solid black;
+  min-width: 900px;
+  width: 500px ;
   padding: 20px;
+  margin: auto;
+  border-radius: 20px;
+  margin-left: auto;
 }
