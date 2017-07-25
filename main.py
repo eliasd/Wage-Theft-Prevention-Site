@@ -19,6 +19,7 @@ import jinja2
 import os
 from google.appengine.api import users
 import logging
+from datastore_obj import User
 from time_calc_funct import time_calc
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
