@@ -73,7 +73,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
         #Total Time Worked:
         time_worked = time_calc(clock_in_hour,clock_out_hour,clock_in_min,clock_out_min,time_of_day_in,time_of_day_out)
 
-        total tax = 0
+        total_tax = 0
         if marital_status == 2:
             total_tax = 6.20 + 1.45 + 0.90
         else:
