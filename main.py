@@ -130,7 +130,6 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         user_query_result = User.query(User.user_id==userID).get()
         if not user_query_result:
             alert_notification = 0
-            (User(user_id=userID,marital_status=marital_status,total_california_tax=total_tax)).put()
         else:
             (WageStub(clock_in_hour=clock_in_hour,
                 clock_in_min=clock_in_min,
