@@ -44,8 +44,8 @@ class FinancialLogHandler(webapp2.RequestHandler):
 
         # Generating Signout Link
         user=users.get_current_user()
-        signout_greeting = ('(<a href="%s">Log Out</a>)') % (users.create_logout_url('/'))
-        
+        signout_greeting = ('<a href="%s">Log Out</a>') % (users.create_logout_url('/'))
+
         # Financial Log Dictionary
         financial_log_dict = {'signout':signout_greeting}
 
@@ -56,7 +56,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
 
         # Generating Signout Link
         user=users.get_current_user()
-        signout_greeting = ('(<a href="%s">Log Out</a>)') % (users.create_logout_url('/'))
+        signout_greeting = ('<a href="%s">Log Out</a>') % (users.create_logout_url('/'))
 
         #Request the Wage Variables
         clock_in_hour = int(self.request.get('time_in_hour'))
@@ -99,7 +99,7 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         # Generating Signout Link
         user=users.get_current_user()
         userID = user.user_id()
-        signout_greeting = ('%s (<a href="%s">Log Out</a>)') % (user.nickname(), users.create_logout_url('/'))
+        signout_greeting = ('%s <a href="%s">Log Out</a>') % (users.create_logout_url('/'))
 
         pay_check = float(self.request.get('pay_check'))
         #code: #1: ok; #2: not ok
