@@ -99,7 +99,7 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         # Generating Signout Link
         user=users.get_current_user()
         userID = user.user_id()
-        signout_greeting = ('%s <a href="%s">Log Out</a>') % (users.create_logout_url('/'))
+        signout_greeting = ('<a href="%s">Log Out</a>') % (users.create_logout_url('/'))
 
         pay_check = float(self.request.get('pay_check'))
         #code: #1: ok; #2: not ok
@@ -109,7 +109,7 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         query_result = User.query(User.user_id==userID).get()
         if query_result and query_result.user_id == userID:
             estimated_pay = (query_result.time_worked * 10.50) - ((query_result.total_california_tax)/100)*(query_result.time_worked * 10.50)
-            if  pay_check - 20 < estimated_pay:
+            if  pay_check < estimated_pay-1:
                 alert_notification = 2
             else:
                 alert_notification = 1
@@ -123,7 +123,7 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         financial_log_dict = {
                 'alert':alert_notification,
                 'pay_check':pay_check,
-                'estimated_pay':estimated_pay,
+                'estimated_pay':round(estimated_pay,2),
                 'signout': signout_greeting
                 }
         self.response.write(f_template.render(financial_log_dict))
