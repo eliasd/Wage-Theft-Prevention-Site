@@ -9,11 +9,12 @@
 
 <body>
   <!-- tab to redirect to different pages-->
+  <div id='body'>
   <div id="header">
     <!-- insert tab line-->
     {{signout}}
   </div>
-  <h1>Wage Calculater</h1>
+  <h1>Wage Calculator</h1>
   <!--div to put all of wage calc -->
   <div id="check_info">
     <h1> Update Your Wages for Today! </h1>
@@ -46,45 +47,48 @@
       </form>
     </div>
   </div>
+  <br/>
     <!--div to put all of pay stub -->
-    <div id="pay_checks">
-      <div id='small-paycheck-div'>
-        <h1> Paycheck</h1>
-      </div>
+<div id="pay_checks">
+  <div id='small-paycheck-div'>
+    <h1> Paycheck</h1>
+  </div>
       <!--pay stub form to ask for check-->
-      <div id ="form2">
-        <form method="post" action="/finlog-check">
+    <div id ="form2">
+      <form method="post" action="/finlog-check">
           <!--asks for check info -->
-          <div id="check">
-            <div type="checks">
+        <div id="check">
+          <div type="checks">
             <h3>How much was your paycheck? <input type="number" name="pay_check"/></h3>
             <p><input type="submit" value="Submit"></p>
-            </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
+  </div>
+<br>
 <div id="result">
   <h1>Result:</h1>
 
     {% if alert and alert == 2 %}
-      (no bueno!)
+      <p>
+        Oh no! We noticed something off with your check:<br>
+        Est: {{estimated_pay}}<br>
+        Act: {{pay_check}}
+      </p>
     {% elif alert and alert == 1 %}
-      (all good)
-    {% else %}
-      (no)
+      <p>
+        Everything in order!:<br>
+        Est: {{estimated_pay}}<br>
+        Act: {{pay_check}}
+      </p>
+
     {%endif%}
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 609a1b725f5812cafe4e52c4f3b2c3e7e5f7a7dc
 </div>
 
 
 
 
-
+</div>
 </body>
 </html>

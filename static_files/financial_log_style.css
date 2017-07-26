@@ -1,14 +1,25 @@
+#body{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 #header{
   border: 3px solid black;
   text-align: left;
+}
+h1{
+  margin auto
 }
 #check_info{
   border: 3px solid black;
   min-width: 900px;
   width: 500px ;
   padding: 20px;
-  margin: 20px 8px 20px 8px;
+  margin: auto;
   border-radius: 20px;
+  justify-content: center;
+
 }
 .time_in_hour{
   width: 300px;
@@ -49,7 +60,7 @@
   min-width: 900px;
   width: 500px ;
   padding: 20px;
-  margin: 20px 8px 20px 8px;
+  margin: auto;
   border-radius: 20px;
 }
 #result{
@@ -57,6 +68,6 @@
   min-width: 900px;
   width: 500px ;
   padding: 20px;
-  margin: 20px 8px 20px 8px;
+  margin: auto;
   border-radius: 20px;
 }
