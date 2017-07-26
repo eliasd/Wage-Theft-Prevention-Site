@@ -1,6 +1,4 @@
 #header{
-  border: 3px solid black;
-  text-align: right;
   font-family: 'Glegoo', serif;
 }
 h1{
@@ -40,7 +38,7 @@ h1{
   margin: auto;
 }
 #check_info{
-  border: 3px solid black;
+  border: 3px solid #4CAF50;
   min-width: 900px;
   width: 500px ;
   padding: 20px;
@@ -78,14 +76,8 @@ h1{
   border: 2px solid black;
   margin: 3px 0px 3px 1px;
 }
-/*#status{
-  width: 150px;
-  height: 30px;
-  font-size: 14pt;
-  display: block;
-}*/
 #pay_checks{
-  border: 3px solid black;
+  border: 3px solid #4CAF50;
   min-width: 900px;
   width: 500px ;
   padding: 20px;
@@ -94,7 +86,7 @@ h1{
   font-family: 'Sorts Mill Goudy', serif;
 }
 #result{
-  border: 3px solid black;
+  border: 3px solid #4CAF50;
   min-width: 900px;
   width: 500px ;
   padding: 20px;
