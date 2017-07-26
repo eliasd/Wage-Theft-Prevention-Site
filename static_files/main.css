@@ -40,7 +40,7 @@ p{
  }
 .middle {
   position: absolute;
-  right: 685px;
+  right: 700px;
   width: 300px;
 }
 
@@ -50,7 +50,7 @@ p{
 }
 .right {
     position: absolute;
-    right: 370px;
+    right: 400px;
     width: 300px;
 }
 
@@ -78,8 +78,15 @@ p{
     display: none;
     padding: 50px;
     text-align: center;
+    width: 100%;
+    length:100%;
 }
 
 /* Style each tab content individually */
-#TabHeader {background-color:tan;}
-#SignIn {background-color:saddlebrown;}
+#TabHeader {background-image: url(http://www.fincosgh.com/wp-content/uploads/2015/08/mining-slide.jpg);
+            background-size: cover;
+            background-position:160px -100px;}
+#SignIn {background-image: url(https://static1.squarespace.com/static/52fa3c5de4b0eea0230c1416/t/56a1881a76d99cf8770da538/1453426726156/);
+         background-size: cover;
+         background-position:center;
+         }
