@@ -6,7 +6,7 @@ from google.appengine.ext import ndb
 
 class User(ndb.Model):
     user_id = ndb.StringProperty()
-    time_worked = ndb.FloatProperty()
+    # time_worked = ndb.FloatProperty()
     marital_status = ndb.IntegerProperty()
     total_california_tax = ndb.FloatProperty()
 

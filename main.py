@@ -70,10 +70,12 @@ class FinancialLogHandler(webapp2.RequestHandler):
 
         break_time_length = int(self.request.get('break_time_length'))
 
+        date = self.request.get('date')
+
         marital_status = int(self.request.get('marital_status'))
         userID = user.user_id()
 
-        #Total Time Worked:
+        #Total Time Worked (NOT NECESSARY ANYMORE):
         time_worked = time_calc(clock_in_hour,clock_out_hour,clock_in_min,clock_out_min,time_of_day_in,time_of_day_out) - (break_time_length/60.0)
 
         total_tax = 0
@@ -83,13 +85,23 @@ class FinancialLogHandler(webapp2.RequestHandler):
             total_tax = 6.20 + 1.45 + 0.90 + 1.315
 
         # Check if user is in database: if not create datastore element; otherwise simply modify
-        query_result = User.query(User.user_id==userID).get()
-        if query_result and query_result.user_id == userID:
-            query_result.time_worked = query_result.time_worked + time_worked
-            query_result.put()
-        else:
-            (User(user_id=userID,time_worked=time_worked,marital_status=marital_status,total_california_tax=total_tax)).put()
+        user_query_result = User.query(User.user_id==userID).get()
 
+        if not user_query_result:
+            (User(user_id=userID,marital_status=marital_status,total_california_tax=total_tax)).put()
+
+
+        (WageStub(clock_in_hour=clock_in_hour,
+            clock_in_min=clock_in_min,
+            time_of_day_in=time_of_day_in,
+            clock_out_hour=clock_out_hour,
+            clock_out_min=clock_out_min,
+            time_of_day_out=time_of_day_out,
+            break_time_length=break_time_length,
+            date=date,
+            user_id=userID)).put()
+
+        #ARE THE FIRST TWO VARIABLES NECESSARY??
         financial_log_dict  = {'time_worked': time_worked,'total_california_tax':total_tax,'signout':signout_greeting}
         self.response.write(f_template.render(financial_log_dict))
 
@@ -107,9 +119,9 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         alert_notification = 0
 
         #Compare pay_check vs wage_stubs
-        query_result = User.query(User.user_id==userID).get()
-        if query_result and query_result.user_id == userID:
-            estimated_pay = (query_result.time_worked * 10.50) - ((query_result.total_california_tax)/100)*(query_result.time_worked * 10.50)
+        user_query_result = User.query(User.user_id==userID).get()
+        if user_query_result and user_query_result.user_id == userID:
+            estimated_pay = (user_query_result.time_worked * 10.50) - ((user_query_result.total_california_tax)/100)*(user_query_result.time_worked * 10.50)
             if  pay_check < estimated_pay-1:
                 alert_notification = 2
             else:
