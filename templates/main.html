@@ -14,7 +14,9 @@
       <div id='header'>
         <div class="topnav">
           <a class="active" href="#home">Home</a>
-          <a href="finlog">Financial Log</a>
+          {% if finlogbutton %}
+          <a {{finlogbutton}}></a>
+          {%endif%}
           <a {{signout}}></a>
       </div>
 
