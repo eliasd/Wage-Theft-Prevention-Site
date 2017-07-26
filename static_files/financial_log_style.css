@@ -1,15 +1,14 @@
+#header{
+  border: 3px solid black;
+  text-align: right;
+}
 #body{
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-
-#header{
-  border: 3px solid black;
-  text-align: left;
-}
-h1{
-  margin auto
+#title{
+  margin: auto;
 }
 #check_info{
   border: 3px solid black;
