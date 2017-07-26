@@ -32,10 +32,13 @@ class MainHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             greet = ('<a href="%s">Log out</a>') % (users.create_logout_url('/'))
+            finlog_button = ("<a href='finlog'>Financial Log</a>")
         else:
-            greet = ('<a href="%s">Sign in</a>') % (users.create_login_url('/finlog'))
+            greet = ('<a href="%s">Log in</a>') % (users.create_login_url('/finlog'))
 
-        greetingdict = {'signout':greet}
+
+
+        greetingdict = {'signout':greet,'finlog-button':finlog_button}
         logging.info(greetingdict)
         self.response.write(main_template.render(greetingdict))
 
