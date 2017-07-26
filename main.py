@@ -89,7 +89,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
         else:
             (User(user_id=userID,time_worked=time_worked,marital_status=marital_status,total_california_tax=total_tax)).put()
 
-        financial_log_dict  = {'time_worked': time_worked,'total_california_tax':total_tax}
+        financial_log_dict  = {'time_worked': time_worked,'total_california_tax':total_tax,'signout':signout_greeting}
         self.response.write(f_template.render(financial_log_dict))
 
 class FinancialLogCheckHandler(webapp2.RequestHandler):
