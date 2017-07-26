@@ -31,11 +31,12 @@ class MainHandler(webapp2.RequestHandler):
         #
         user = users.get_current_user()
         if user:
-            greet = ('(<a href="%s">sign out</a>)') % (users.create_logout_url('/'))
+            greet = ('<a href="%s">Log out</a>') % (users.create_logout_url('/'))
         else:
-            greet = ('<a href="%s">Sign in</a>.' ) % (users.create_login_url('/finlog'))
+            greet = ('<a href="%s">Sign in</a>') % (users.create_login_url('/finlog'))
 
-        greetingdict = {'greeting':greet}
+        greetingdict = {'signout':greet}
+        logging.info(greetingdict)
         self.response.write(main_template.render(greetingdict))
 
 class FinancialLogHandler(webapp2.RequestHandler):
