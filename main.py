@@ -118,30 +118,49 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         userID = user.user_id()
         signout_greeting = ('<a href="%s">Log Out</a>') % (users.create_logout_url('/'))
 
+        #Request variables
+        start_date = self.request.get('start_date')
+        end_date = self.request.get('start_date')
         pay_check = float(self.request.get('pay_check'))
         #code: #1: ok; #2: not ok
         alert_notification = 0
 
         #Compare pay_check vs wage_stubs
+        #Check if user submitting a check is in database
         user_query_result = User.query(User.user_id==userID).get()
-        if user_query_result and user_query_result.user_id == userID:
-            estimated_pay = (user_query_result.time_worked * 10.50) - ((user_query_result.total_california_tax)/100)*(user_query_result.time_worked * 10.50)
-            if  pay_check < estimated_pay-1:
-                alert_notification = 2
-            else:
-                alert_notification = 1
+        if not user_query_result:
+            alert_notification = 0
+            (User(user_id=userID,marital_status=marital_status,total_california_tax=total_tax)).put()
         else:
-            self.response.write('user is not in database!')
+            (WageStub(clock_in_hour=clock_in_hour,
+                clock_in_min=clock_in_min,
+                time_of_day_in=time_of_day_in,
+                clock_out_hour=clock_out_hour,
+                clock_out_min=clock_out_min,
+                time_of_day_out=time_of_day_out,
+                break_time_length=break_time_length,
+                date=date,
+                user_id=userID)).put()
 
-        # for now we reset the user's time worked; in future create database for daily stubs
-        query_result.time_worked = 0
-        query_result.put()
+            if user_query_result and user_query_result.user_id == userID:
+                estimated_pay = (user_query_result.time_worked * 10.50) - ((user_query_result.total_california_tax)/100)*(user_query_result.time_worked * 10.50)
+                if  pay_check < estimated_pay-1:
+                    alert_notification = 2
+                else:
+                    alert_notification = 1
+            else:
+                self.response.write('user is not in database!')
+
+            # for now we reset the user's time worked; in future create database for daily stubs
+            query_result.time_worked = 0
+            query_result.put()
 
         financial_log_dict = {
-                'alert':alert_notification,
-                'pay_check':pay_check,
-                'estimated_pay':round(estimated_pay,2),
-                'signout': signout_greeting
+        #REMEMBER TO PUT A COMMA
+                'alert':alert_notification
+                # 'pay_check':pay_check,
+                # 'estimated_pay':round(estimated_pay,2),
+                # 'signout': signout_greeting
                 }
         self.response.write(f_template.render(financial_log_dict))
 

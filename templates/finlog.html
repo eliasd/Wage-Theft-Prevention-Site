@@ -93,7 +93,10 @@
         Est: {{estimated_pay}}<br>
         Act: {{pay_check}}
       </p>
-
+    {% else %}
+      <p>
+        Oh no! You have to submit your daily wages first!
+      </p>
     {%endif%}
 </div>
 
