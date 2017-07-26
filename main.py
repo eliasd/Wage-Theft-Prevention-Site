@@ -39,7 +39,7 @@ class MainHandler(webapp2.RequestHandler):
 
 
 
-        greetingdict = {'signout':greet,'finlog-button':finlog_button}
+        greetingdict = {'signout':greet,'finlogbutton':finlog_button}
         logging.info(greetingdict)
         self.response.write(main_template.render(greetingdict))
 
