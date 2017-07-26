@@ -31,7 +31,7 @@ class MainHandler(webapp2.RequestHandler):
         #
         user = users.get_current_user()
         if user:
-            greet = ('Welcome, %s! (<a href="%s">sign out</a>)') % (user.nickname(), users.create_logout_url('/'))
+            greet = ('(<a href="%s">sign out</a>)') % (users.create_logout_url('/'))
         else:
             greet = ('<a href="%s">Sign in</a>.' ) % (users.create_login_url('/finlog'))
 
@@ -44,8 +44,8 @@ class FinancialLogHandler(webapp2.RequestHandler):
 
         # Generating Signout Link
         user=users.get_current_user()
-        signout_greeting = ('%s (<a href="%s">Log Out</a>)') % (user.nickname(), users.create_logout_url('/'))
-
+        signout_greeting = ('(<a href="%s">Log Out</a>)') % (users.create_logout_url('/'))
+        
         # Financial Log Dictionary
         financial_log_dict = {'signout':signout_greeting}
 
@@ -56,7 +56,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
 
         # Generating Signout Link
         user=users.get_current_user()
-        signout_greeting = ('%s (<a href="%s">Log Out</a>)') % (user.nickname(), users.create_logout_url('/'))
+        signout_greeting = ('(<a href="%s">Log Out</a>)') % (users.create_logout_url('/'))
 
         #Request the Wage Variables
         clock_in_hour = int(self.request.get('time_in_hour'))

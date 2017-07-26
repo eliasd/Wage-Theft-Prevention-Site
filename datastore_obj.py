@@ -9,3 +9,17 @@ class User(ndb.Model):
     time_worked = ndb.FloatProperty()
     marital_status = ndb.IntegerProperty()
     total_california_tax = ndb.FloatProperty()
+
+class WageStub(ndb.Model):
+    clock_in_hour = ndb.IntegerProperty()
+    clock_in_min = ndb.IntegerProperty()
+    time_of_day_in = ndb.StringProperty()
+    clock_out_hour = ndb.IntegerProperty()
+    clock_out_min = ndb.IntegerProperty()
+    time_of_day_out = ndb.StringProperty()
+    break_time_length = ndb.FloatProperty()
+    user_id = ndb.StringProperty()
+
+class PaycheckStub(ndb.Model):
+    pay_check = ndb.FloatProperty()
+    user_id = ndb.StringProperty()
