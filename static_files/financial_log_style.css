@@ -1,6 +1,10 @@
 #header{
   border: 3px solid black;
   text-align: right;
+  font-family: 'Glegoo', serif;
+}
+h1{
+  font-family: 'Glegoo', serif;
 }
 .topnav {
   overflow: hidden;
@@ -30,6 +34,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  font-family: 'Glegoo', serif;
 }
 #title{
   margin: auto;
@@ -42,6 +47,7 @@
   margin: auto;
   border-radius: 20px;
   justify-content: center;
+  font-family: 'Sorts Mill Goudy', serif;
 
 }
 .time_in_hour{
@@ -85,6 +91,7 @@
   padding: 20px;
   margin: auto;
   border-radius: 20px;
+  font-family: 'Sorts Mill Goudy', serif;
 }
 #result{
   border: 3px solid black;
@@ -93,4 +100,5 @@
   padding: 20px;
   margin: auto;
   border-radius: 20px;
+  font-family: 'Sorts Mill Goudy', serif;
 }
