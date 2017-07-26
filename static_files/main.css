@@ -16,6 +16,7 @@ h1 {
 h3{
   font-family: 'Glegoo', serif;
   font-size: 50px;
+  text-align: center;
 }
 p{
   font-family: 'Sorts Mill Goudy', serif;
@@ -90,3 +91,8 @@ p{
          background-size: cover;
          background-position:center;
          }
+#WageCalc {
+           background-image: url(http://cdn.history.com/sites/2/2014/01/riveting_airplane-P.jpeg);
+           background-size: cover;
+           background-position:top;
+           }
