@@ -34,7 +34,7 @@ class MainHandler(webapp2.RequestHandler):
             greet = ('<a href="%s">Log out</a>') % (users.create_logout_url('/'))
             finlog_button = ("<a href='finlog'>Financial Log</a>")
         else:
-            greet = ('<a href="%s">Log in</a>') % (users.create_login_url('/finlog'))
+            greet = ('<a href="%s">Log in</a>') % (users.create_login_url('/'))
             finlog_button = ""
 
 
