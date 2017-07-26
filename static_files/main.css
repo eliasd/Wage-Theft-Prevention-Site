@@ -29,32 +29,29 @@ p{
  }
 
  #farmer {
-   height: 50%;
- }
- .left{
-   position: absolute;
-   left: 90px;
-   width: 300px;
+   height: 45%;
+   padding-top: 50px;
+   padding-right: 30px;
+   padding-bottom: 50px;
+   padding-left: 80px;
  }
 
  #woman {
-   height: 50%;
+   height: 45%;
+   padding-top: 50px;
+   padding-right: 30px;
+   padding-bottom: 50px;
+   padding-left: 80px;
  }
-.middle {
-  position: absolute;
-  right: 700px;
-  width: 300px;
-}
-
 
 #man {
-  height: 50%;
+  height: 45%;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
 }
-.right {
-    position: absolute;
-    right: 400px;
-    width: 300px;
-}
+
 
 /* Style the tab buttons */
 .tablink {
@@ -97,3 +94,15 @@ p{
            background-size: cover;
            background-position:top;
            }
+#test{
+  background-image: url(https://www.dayzrp.com/uploads/monthly_2017_06/042756325.jpg.12e10c8ce7bfe1fee0548633207ae8b9.jpg);
+  color: white;
+}
+.newspaper {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 30px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 30px; /* Firefox */
+    column-gap: 30px;
+}
