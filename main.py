@@ -148,6 +148,7 @@ class FinancialCalcCheckHandler(webapp2.RequestHandler):
                 end_date = end_date_obj,
             )).put()
 
+            # IS THE ISSUE: USER_ID v. keys???
             wage_stubs_query_results = WageStub.query(WageStub.user_id==userID, WageStub.date >= start_date_obj, WageStub.date <= end_date_obj).fetch()
             total_time_worked = 0
             estimated_pay = 0
