@@ -23,6 +23,15 @@
     <div id = "body">
       <div id= "your_history">
         <h1> Your Daily Logs <h1>
+          {%for wagestub in stubs%}
+          <br />
+            <p>
+              Time in: {{wagestub.clock_in_hour}}:{{wagestub.clock_in_min}} {{wagestub.time_of_day_in}} <br />
+              Time out: {{wagestub.clock_out_hour}}:{{wagestub.clock_out_min}} {{wagestub.time_of_day_out}} <br />
+              Break: {{wagestub.break_time_length}} minutes <br />
+              {{wagestub.date}} <br />
+            </p>
+          {%endfor%}
       </div>
     </div>
   </body>

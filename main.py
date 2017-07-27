@@ -177,6 +177,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
 
         #
         user = users.get_current_user()
+        userID = user.user_id()
         if user:
             greet = ('<a href="%s">Log out</a>') % (users.create_logout_url('/'))
             finlog_button = ("<a href='finlog'>Financial Calculator</a>")
@@ -184,9 +185,12 @@ class FinancialLogHandler(webapp2.RequestHandler):
             greet = ('<a href="%s">Log in</a>') % (users.create_login_url('/'))
             finlog_button = ""
 
+        #Retrieves ALL the wage stubs (no paycheck stubs) but not in chronological order!!
+        wage_stubs_query_results = WageStub.query(WageStub.user_id==userID).fetch()
 
 
-        greetingdict = {'signout':greet,'finlogbutton':finlog_button}
+
+        greetingdict = {'signout':greet,'finlogbutton':finlog_button,'stubs':wage_stubs_query_results}
         logging.info(greetingdict)
         self.response.write(main_template.render(greetingdict))
 
