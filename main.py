@@ -19,8 +19,9 @@ import jinja2
 import os
 from google.appengine.api import users
 import logging
-from datastore_obj import User
+from datastore_obj import WageStub, PaycheckStub, User
 from time_calc_funct import time_calc
+from datetime import datetime
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
@@ -32,7 +33,7 @@ class MainHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             greet = ('<a href="%s">Log out</a>') % (users.create_logout_url('/'))
-            finlog_button = ("<a href='finlog'>Financial Log</a>")
+            finlog_button = ("<a href='finlog'>Financial Calculator</a>")
         else:
             greet = ('<a href="%s">Log in</a>') % (users.create_login_url('/'))
             finlog_button = ""
@@ -75,6 +76,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
         break_time_length = int(self.request.get('break_time_length'))
 
         date = self.request.get('date')
+        date_obj = datetime.strptime(date, '%Y-%m-%d')
 
         marital_status = int(self.request.get('marital_status'))
         userID = user.user_id()
@@ -94,7 +96,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
         if not user_query_result:
             (User(user_id=userID,marital_status=marital_status,total_california_tax=total_tax)).put()
 
-
+        logging.info(date_obj)
         (WageStub(clock_in_hour=clock_in_hour,
             clock_in_min=clock_in_min,
             time_of_day_in=time_of_day_in,
@@ -102,12 +104,15 @@ class FinancialLogHandler(webapp2.RequestHandler):
             clock_out_min=clock_out_min,
             time_of_day_out=time_of_day_out,
             break_time_length=break_time_length,
-            date=date,
+            date=date_obj,
             user_id=userID)).put()
 
         #ARE THE FIRST TWO VARIABLES NECESSARY??
         financial_log_dict  = {'time_worked': time_worked,'total_california_tax':total_tax,'signout':signout_greeting}
         self.response.write(f_template.render(financial_log_dict))
+
+def objCon(date_string):
+    return datetime.strptime(date_string, '%Y-%m-%d')
 
 class FinancialLogCheckHandler(webapp2.RequestHandler):
     def post(self):
@@ -120,7 +125,10 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
 
         #Request variables
         start_date = self.request.get('start_date')
-        end_date = self.request.get('start_date')
+        start_date_obj = objCon(start_date)
+        end_date = self.request.get('end_date')
+        end_date_obj = objCon(end_date)
+
         pay_check = float(self.request.get('pay_check'))
         #code: #1: ok; #2: not ok
         alert_notification = 0
@@ -131,18 +139,20 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         if not user_query_result:
             alert_notification = 0
         else:
-            (WageStub(clock_in_hour=clock_in_hour,
-                clock_in_min=clock_in_min,
-                time_of_day_in=time_of_day_in,
-                clock_out_hour=clock_out_hour,
-                clock_out_min=clock_out_min,
-                time_of_day_out=time_of_day_out,
-                break_time_length=break_time_length,
-                date=date,
-                user_id=userID)).put()
+            (PaycheckStub(
+                pay_check = pay_check,
+                user_id = userID,
+                start_date = start_date_obj,
+                end_date = end_date_obj,
+            )).put()
 
-            if user_query_result and user_query_result.user_id == userID:
-                estimated_pay = (user_query_result.time_worked * 10.50) - ((user_query_result.total_california_tax)/100)*(user_query_result.time_worked * 10.50)
+            wage_stubs_query_results = WageStub.query(WageStub.user_id==userID, WageStub.date >= start_date_obj, WageStub.date <= end_date_obj).fetch()
+            total_time_worked = 0
+            estimated_pay = 0
+            for wageStubs in wage_stubs_query_results:
+                total_time_worked += time_calc(wageStubs.clock_in_hour,wageStubs.clock_out_hour,wageStubs.clock_in_min,wageStubs.clock_out_min,wageStubs.time_of_day_in,wageStubs.time_of_day_out)
+            if user_query_result.user_id == userID:
+                estimated_pay = (total_time_worked * 10.50) - (((user_query_result.total_california_tax)/100)*(total_time_worked * 10.50))
                 if  pay_check < estimated_pay-1:
                     alert_notification = 2
                 else:
@@ -150,16 +160,12 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
             else:
                 self.response.write('user is not in database!')
 
-            # for now we reset the user's time worked; in future create database for daily stubs
-            query_result.time_worked = 0
-            query_result.put()
-
         financial_log_dict = {
         #REMEMBER TO PUT A COMMA
-                'alert':alert_notification
-                # 'pay_check':pay_check,
-                # 'estimated_pay':round(estimated_pay,2),
-                # 'signout': signout_greeting
+                'alert':alert_notification,
+                 'pay_check':pay_check,
+                 'estimated_pay':round(estimated_pay,2),
+                 'signout': signout_greeting
                 }
         self.response.write(f_template.render(financial_log_dict))
 
