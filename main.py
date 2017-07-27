@@ -126,7 +126,7 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
         #Request variables
         start_date = self.request.get('start_date')
         start_date_obj = objCon(start_date)
-        end_date = self.request.get('start_date')
+        end_date = self.request.get('end_date')
         end_date_obj = objCon(end_date)
 
         pay_check = float(self.request.get('pay_check'))
@@ -147,11 +147,12 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
             )).put()
 
             wage_stubs_query_results = WageStub.query(WageStub.user_id==userID, WageStub.date >= start_date_obj, WageStub.date <= end_date_obj).fetch()
-
+            total_time_worked = 0
+            estimated_pay = 0
             for wageStubs in wage_stubs_query_results:
-                total_time_worked = time_calc(wageStubs.clock_in_hour,wageStubs.clock_out_hour,wageStubs.clock_in_min,wageStubs.clock_out_min,wageStubs.time_of_day_in,wageStubs.time_of_day_out)
+                total_time_worked += time_calc(wageStubs.clock_in_hour,wageStubs.clock_out_hour,wageStubs.clock_in_min,wageStubs.clock_out_min,wageStubs.time_of_day_in,wageStubs.time_of_day_out)
             if user_query_result.user_id == userID:
-                estimated_pay = (user_query_result.time_worked * 10.50) - ((user_query_result.total_california_tax)/100)*(user_query_result.time_worked * 10.50)
+                estimated_pay = (total_time_worked * 10.50) - (((user_query_result.total_california_tax)/100)*(total_time_worked * 10.50))
                 if  pay_check < estimated_pay-1:
                     alert_notification = 2
                 else:
@@ -159,16 +160,12 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
             else:
                 self.response.write('user is not in database!')
 
-            # for now we reset the user's time worked; in future create database for daily stubs
-            query_result.time_worked = 0
-            query_result.put()
-
         financial_log_dict = {
         #REMEMBER TO PUT A COMMA
-                'alert':alert_notification
-                # 'pay_check':pay_check,
-                # 'estimated_pay':round(estimated_pay,2),
-                # 'signout': signout_greeting
+                'alert':alert_notification,
+                 'pay_check':pay_check,
+                 'estimated_pay':round(estimated_pay,2),
+                 'signout': signout_greeting
                 }
         self.response.write(f_template.render(financial_log_dict))
 
