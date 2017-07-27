@@ -18,8 +18,9 @@
       <div id='header'>
         <div class="topnav">
           <a class="active" href="#home">Home</a>
-          {% if finlogbutton %}
+          {% if finlogbutton and logpage_button%}
           <a {{finlogbutton}}></a>
+          <a {{logpagebutton}}></a>
           {%endif%}
           <a {{signout}}></a>
       </div>
@@ -96,7 +97,7 @@
       </div>
       <br>
       <div id="preFooter">
-          
+
       </div>
       <div class="foot">
         <footer>
