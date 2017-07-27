@@ -18,11 +18,11 @@ class WageStub(ndb.Model):
     clock_out_min = ndb.IntegerProperty()
     time_of_day_out = ndb.StringProperty()
     break_time_length = ndb.FloatProperty()
-    date = ndb.DateTimeProperty()
+    date = ndb.DateProperty()
     user_id = ndb.StringProperty()
 
 class PaycheckStub(ndb.Model):
     pay_check = ndb.FloatProperty()
     user_id = ndb.StringProperty()
-    start_date = ndb.DateTimeProperty()
-    end_date = ndb.DateTimeProperty()
+    start_date = ndb.DateProperty()
+    end_date = ndb.DateProperty()
