@@ -1,5 +1,12 @@
 #title{
   text-align: center;
+  font-family: 'Glegoo', serif;
+}
+h1{
+  font-family: 'Glegoo', serif;
+}
+#header{
+  font-family: 'Glegoo', serif;
 }
 .topnav {
   overflow: hidden;
@@ -33,4 +40,7 @@
   margin: auto;
   border-radius: 20px;
   font-family: 'Sorts Mill Goudy', serif;
+}
+body{
+  margin: 0px;
 }
