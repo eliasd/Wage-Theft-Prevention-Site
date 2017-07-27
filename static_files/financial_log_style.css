@@ -37,6 +37,9 @@ h1{
 #title{
   margin: auto;
 }
+p{
+  font-size: 24px;
+}
 #check_info{
   border: 3px solid #4CAF50;
   min-width: 60%;
@@ -75,6 +78,9 @@ h1{
   font-size: 14pt;
   border: 2px solid black;
   margin: 3px 0px 3px 1px;
+}
+#status{
+  font-size: 22px;
 }
 #pay_checks{
   border: 3px solid #4CAF50;
