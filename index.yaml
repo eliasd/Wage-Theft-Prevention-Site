@@ -14,9 +14,9 @@ indexes:
   properties:
   - name: user_id
   - name: date
-    direction: desc
 
 - kind: WageStub
   properties:
   - name: user_id
   - name: date
+    direction: desc
