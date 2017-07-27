@@ -10,6 +10,7 @@
 #header{
   border: 3px solid black;
   text-align: right;
+  font-family: 'Glegoo', serif;
 }
 
 .topnav{
@@ -137,5 +138,23 @@ p{
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-      font-family: 'Glegoo', serif;
+    font-family: 'Glegoo', serif;
   }
+  .foot{
+    background-color: #191919;
+
+  }
+  footer{
+    text-align: center;
+    height: 200px;
+    width: 100%;
+    font-family: 'Sorts Mill Goudy', serif;
+    font-size: 17px;
+  }
+  #preFooter {
+         background-color: #4D4D4D;
+         text-align: center;
+         height: 100px;
+         width: 100%;
+        opacity: 0.95;
+     }
