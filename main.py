@@ -148,7 +148,6 @@ class FinancialCalcCheckHandler(webapp2.RequestHandler):
                 end_date = end_date_obj,
             )).put()
 
-            # IS THE ISSUE: USER_ID v. keys???
             wage_stubs_query_results = WageStub.query(WageStub.user_id==userID, WageStub.date >= start_date_obj, WageStub.date <= end_date_obj).fetch()
             total_time_worked = 0
             estimated_pay = 0
@@ -187,7 +186,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
             finlog_button = ""
 
         #Retrieves ALL the wage stubs (no paycheck stubs) but not in chronological order!!
-        wage_stubs_query_results = WageStub.query(WageStub.user_id==userID).fetch()
+        wage_stubs_query_results = WageStub.query(WageStub.user_id==userID).order(-WageStub.date).fetch()
 
 
 
