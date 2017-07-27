@@ -1,3 +1,6 @@
+#title{
+  text-align: center;
+}
 .topnav {
   overflow: hidden;
   background-color: #333;
@@ -21,4 +24,14 @@
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
+}
+#your_history{
+  border: 3px solid #4CAF50;
+  min-width: 80%;
+  width: 80% ;
+  height: 90%;
+  padding: 20px;
+  margin: auto;
+  border-radius: 20px;
+  font-family: 'Sorts Mill Goudy', serif;
 }

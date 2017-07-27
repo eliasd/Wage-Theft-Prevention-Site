@@ -86,14 +86,14 @@
     {% if alert and alert == 2 %}
       <p>
         Oh no! We noticed something off with your check:<br>
-        Est: {{estimated_pay}}<br>
-        Act: {{pay_check}}
+        Estimated Check: {{estimated_pay}}<br>
+        Actual Check: {{pay_check}}
       </p>
     {% elif alert and alert == 1 %}
       <p>
         Everything in order!:<br>
-        Est: {{estimated_pay}}<br>
-        Act: {{pay_check}}
+        Estimated Check: {{estimated_pay}}<br>
+        Actual Check: {{pay_check}}
       </p>
     {% elif alert and alert == 0 %}
       <p>
