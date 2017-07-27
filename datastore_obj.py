@@ -24,5 +24,5 @@ class WageStub(ndb.Model):
 class PaycheckStub(ndb.Model):
     pay_check = ndb.FloatProperty()
     user_id = ndb.StringProperty()
-    start_date = ndb.DateProperty()
-    end_date = ndb.DateProperty()
+    start_date = ndb.DateTimeProperty()
+    end_date = ndb.DateTimeProperty()

@@ -69,11 +69,11 @@ class FinancialCalcHandler(webapp2.RequestHandler):
         #Request the Wage Variables
         clock_in_hour = int(self.request.get('time_in_hour'))
         clock_in_min = int(self.request.get('time_in_min'))
-        time_of_day_in = (self.request.get('time_of_day_in'))
+        time_of_day_in = (self.request.get('time_of_day_in')).upper().trim()
 
         clock_out_hour = int(self.request.get('time_out_hour'))
         clock_out_min = int(self.request.get('time_out_min'))
-        time_of_day_out = (self.request.get('time_of_day_out'))
+        time_of_day_out = (self.request.get('time_of_day_out')).upper().trim()
 
         break_time_length = int(self.request.get('break_time_length'))
 
