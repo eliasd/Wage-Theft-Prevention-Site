@@ -8,6 +8,9 @@ h1{
 #header{
   font-family: 'Glegoo', serif;
 }
+p{
+  font-size: 22pt;
+}
 .topnav {
   overflow: hidden;
   background-color: #333;
@@ -34,8 +37,8 @@ h1{
 }
 #your_history{
   border: 3px solid #4CAF50;
-  min-width: 80%;
-  width: 80% ;
+  min-width: 75%;
+  width: 75% ;
   padding: 20px;
   margin: auto;
   border-radius: 20px;
