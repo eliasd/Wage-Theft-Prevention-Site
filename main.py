@@ -44,7 +44,7 @@ class MainHandler(webapp2.RequestHandler):
         logging.info(greetingdict)
         self.response.write(main_template.render(greetingdict))
 
-class FinancialLogHandler(webapp2.RequestHandler):
+class FinancialCalcHandler(webapp2.RequestHandler):
     def get(self):
         f_template = env.get_template('finlog.html')
 
@@ -114,7 +114,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
 def objCon(date_string):
     return datetime.strptime(date_string, '%Y-%m-%d')
 
-class FinancialLogCheckHandler(webapp2.RequestHandler):
+class FinancialCalcCheckHandler(webapp2.RequestHandler):
     def post(self):
         f_template = env.get_template('finlog.html')
 
@@ -169,9 +169,28 @@ class FinancialLogCheckHandler(webapp2.RequestHandler):
                 }
         self.response.write(f_template.render(financial_log_dict))
 
+class FinancialLogHandler(webapp2.RequestHandler):
+    def get(self):
+        main_template = env.get_template('log.html')
+
+        #
+        user = users.get_current_user()
+        if user:
+            greet = ('<a href="%s">Log out</a>') % (users.create_logout_url('/'))
+            finlog_button = ("<a href='finlog'>Financial Calculator</a>")
+        else:
+            greet = ('<a href="%s">Log in</a>') % (users.create_login_url('/'))
+            finlog_button = ""
+
+
+
+        greetingdict = {'signout':greet,'finlogbutton':finlog_button}
+        logging.info(greetingdict)
+        self.response.write(main_template.render(greetingdict))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/finlog',FinancialLogHandler),
-    ('/finlog-check',FinancialLogCheckHandler)
+    ('/finlog',FinancialCalcHandler),
+    ('/finlog-check',FinancialCalcCheckHandler),
+    ('/logpage',FinancialLogHandler)
 ], debug=True)
