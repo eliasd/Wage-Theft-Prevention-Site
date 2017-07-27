@@ -146,7 +146,7 @@ p{
   }
   footer{
     text-align: center;
-    height: 200px;
+    height: 150px;
     width: 100%;
     font-family: 'Sorts Mill Goudy', serif;
     font-size: 17px;
@@ -154,7 +154,7 @@ p{
   #preFooter {
          background-color: #4D4D4D;
          text-align: center;
-         height: 100px;
+         height: 85px;
          width: 100%;
         opacity: 0.95;
      }
