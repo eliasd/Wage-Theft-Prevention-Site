@@ -8,14 +8,20 @@
 }
 
 #header{
-
+  width: 100%;
   text-align: right;
   font-family: 'Glegoo', serif;
+  height: 40px;
+}
+div{
+  display: block;
 }
 
 .topnav{
   overflow: hidden;
   background-color: #333;
+  width:100%;
+  position: fixed;
 }
 
 .topnav a{
@@ -158,6 +164,28 @@ p{
          width: 100%;
         opacity: 0.95;
      }
+.font{
+  font-family: 'Glegoo', serif;
+    text-align: center;
+    font-size: 20px;
+}
+.title{
+  background-image: url(http://soniachaidez.com/wp-content/uploads/2015/09/street-car-vehicle-blur.jpg);
+  background-size:cover;
+  color:white;
+  background-position: center;
+  height: 230px;
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+
+}
+.centering{
+  display: table;
+  width: 100%;
+}
+
+
 body{
   margin:0px;
 }
