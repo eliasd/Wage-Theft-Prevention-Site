@@ -194,11 +194,12 @@ class FinancialLogHandler(webapp2.RequestHandler):
         if len(wage_stubs_query_results) >= len(paycheck_stubs_query_results):
             paycheck_index = 0
             for wage_stubs in wage_stubs_query_results:
+                # FIX THE CHRONO ISSUE
                 if paycheck_index == len(paycheck_stubs_query_results):
                     stubs_list.append(wage_stubs)
                     logging.info('IF ===')
                     logging.info(stubs_list)
-                elif wage_stubs.date < paycheck_stubs_query_results[paycheck_index].start_date:
+                elif wage_stubs.date > paycheck_stubs_query_results[paycheck_index].end_date:
                     stubs_list.append(wage_stubs)
                     logging.info('ELIF ===')
                     logging.info(stubs_list)
