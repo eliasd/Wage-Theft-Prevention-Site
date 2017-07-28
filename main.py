@@ -215,7 +215,7 @@ class FinancialLogHandler(webapp2.RequestHandler):
                 if wagestub_index == len(wage_stubs_query_results):
                     stubs_list.append(paycheck)
                     logging.info('IF ===')
-                elif paycheck.date < wage_stubs_query_results[wagestub_index].date:
+                elif paycheck.end_date > wage_stubs_query_results[wagestub_index].date:
                     stubs_list.append(paycheck)
                 else:
                     stubs_list.append(wage_stubs_query_results[wagestub_index])
