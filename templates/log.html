@@ -23,13 +23,21 @@
     <div id = "body">
       <div id= "your_history">
         <h1> Your Daily Logs <h1>
-          {%for wagestub in stubs%}
+          {%for stub in stubs%}
           <br />
             <p>
-              Time in: {{wagestub.clock_in_hour}}:{{wagestub.clock_in_min}} {{wagestub.time_of_day_in}} <br />
-              Time out: {{wagestub.clock_out_hour}}:{{wagestub.clock_out_min}} {{wagestub.time_of_day_out}} <br />
-              Break: {{wagestub.break_time_length}} minutes <br />
-              {{wagestub.date}} <br />
+              {%if stub.clock_in_hour%}
+                Wage Log<br />
+                Time in: {{stub.clock_in_hour}}:{{stub.clock_in_min}} {{stub.time_of_day_in}} <br />
+                Time out: {{stub.clock_out_hour}}:{{stub.clock_out_min}} {{stub.time_of_day_out}} <br />
+                Break: {{stub.break_time_length}} minutes <br />
+                Date: {{stub.date}} <br />
+              {%else%}
+                Paycheck<br />
+                Pay: {{stub.pay_check}} <br />
+                End Date: {{stub.end_date}} <br />
+                Start Date: {{stub.start_date}} <br />
+              {%endif%}
             </p>
           {%endfor%}
       </div>

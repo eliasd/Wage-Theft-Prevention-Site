@@ -10,13 +10,24 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-- kind: WageStub
+- kind: PaycheckStub
   properties:
   - name: user_id
-  - name: date
+  - name: start_date
+
+- kind: PaycheckStub
+  properties:
+  - name: user_id
+  - name: start_date
     direction: desc
 
 - kind: WageStub
   properties:
   - name: user_id
   - name: date
+
+- kind: WageStub
+  properties:
+  - name: user_id
+  - name: date
+    direction: desc

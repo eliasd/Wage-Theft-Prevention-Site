@@ -114,7 +114,7 @@ class FinancialCalcHandler(webapp2.RequestHandler):
         self.response.write(f_template.render(financial_log_dict))
 
 def objCon(date_string):
-    return datetime.strptime(date_string, '%Y-%m-%d')
+    return datetime.strptime(date_string, '%Y-%m-%d').date()
 
 class FinancialCalcCheckHandler(webapp2.RequestHandler):
     def post(self):
@@ -187,10 +187,44 @@ class FinancialLogHandler(webapp2.RequestHandler):
 
         #Retrieves ALL the wage stubs (no paycheck stubs) but not in chronological order!!
         wage_stubs_query_results = WageStub.query(WageStub.user_id==userID).order(-WageStub.date).fetch()
+        paycheck_stubs_query_results = PaycheckStub.query(PaycheckStub.user_id==userID).order(-PaycheckStub.start_date).fetch()
 
 
+        stubs_list = []
+        if len(wage_stubs_query_results) >= len(paycheck_stubs_query_results):
+            paycheck_index = 0
+            for wage_stubs in wage_stubs_query_results:
+                if paycheck_index == len(paycheck_stubs_query_results):
+                    stubs_list.append(wage_stubs)
+                    logging.info('IF ===')
+                    logging.info(stubs_list)
+                elif wage_stubs.date < paycheck_stubs_query_results[paycheck_index].start_date:
+                    stubs_list.append(wage_stubs)
+                    logging.info('ELIF ===')
+                    logging.info(stubs_list)
+                else:
+                    stubs_list.append(paycheck_stubs_query_results[paycheck_index])
+                    stubs_list.append(wage_stubs)
+                    logging.info('ELSE ===')
+                    logging.info(stubs_list)
+                    paycheck_index+=1
+        else:
+            wagestub_index = 0
+            for paycheck in paycheck_stubs_query_results:
+                if wagestub_index == len(wage_stubs_query_results):
+                    stubs_list.append(paycheck)
+                    logging.info('IF ===')
+                elif paycheck.date < wage_stubs_query_results[wagestub_index].date:
+                    stubs_list.append(paycheck)
+                else:
+                    stubs_list.append(wage_stubs_query_results[wagestub_index])
+                    stubs_list.append(paycheck)
+                    wagestub_index+=1
 
-        greetingdict = {'signout':greet,'finlogbutton':finlog_button,'stubs':wage_stubs_query_results}
+        logging.info('STUBS_LIST======')
+        logging.info(stubs_list)
+
+        greetingdict = {'signout':greet,'finlogbutton':finlog_button,'stubs':stubs_list}
         logging.info(greetingdict)
         self.response.write(main_template.render(greetingdict))
 
