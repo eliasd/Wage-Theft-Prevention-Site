@@ -5,6 +5,7 @@
   <link href="https://fonts.googleapis.com/css?family=Arapey|Glegoo|Inconsolata|Istok+Web|Sorts+Mill+Goudy" rel="stylesheet">
   <link rel= "stylesheet" href="/resources/financial_log_style.css"></link>
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src ='/resources/financial_log_js.js'></script>
 </head>
 
@@ -22,7 +23,9 @@
   </div>
 
   <div id = title>
+    <p></p>
     <h1>Wage Calculator</h1>
+    <p></p>
   </div>
   <!--div to put all of wage calc -->
   <div id="check_info">
@@ -34,12 +37,14 @@
         <div id="time">
           <div type="times">
             <p>
-              Clock in Hour: <input type="number" name="time_in_hour"/>&nbsp&nbsp&nbsp&nbsp
-              Clock in Minute: <input type="number" name="time_in_min"/>&nbsp&nbsp&nbsp&nbsp
-              AM or PM: <input type = 'text' name='time_of_day_in'/> <br><br>
-              Clock out Hour: <input type="number" name="time_out_hour"/>&nbsp&nbsp&nbsp
-              Clock out Minute: <input type="number" name="time_out_min"/>&nbsp&nbsp&nbsp
-              AM or PM: <input type='text' name = 'time_of_day_out' /> <br><br>
+              Clock in Hour / Minute: &nbsp&nbsp<input type="number" name="time_in_hour"/>&nbsp&nbsp:&nbsp&nbsp<input type="number" name="time_in_min"/>&nbsp&nbsp&nbsp&nbsp
+
+              Time of Day: <input type = 'radio' name='time_of_day_in' value=am> AM
+                        <input type = 'radio' name='time_of_day_in' value=pm> PM <br><br>
+
+              Clock out Hour / Minute: <input type="number" name="time_out_hour"/>&nbsp:&nbsp&nbsp<input type="number" name="time_out_min"/>&nbsp&nbsp&nbsp
+              Time of Day: <input type = 'radio' name='time_of_day_out' value=am> AM
+                        <input type = 'radio' name='time_of_day_out' value=pm> PM <br><br>
               Breaktime length in minutes (unpaid):<input type="number" name="break_time_length"/> <br><br>
               Date: <input type="date" name="date"/>
             </p>
@@ -48,11 +53,11 @@
         <!--asks for status using radio button-->
         <div id="status">
            <h3>Choose one: </h3>
-           <input type="radio" name="marital_status" value="1">Dual income or Single
+           <input type="radio" name="marital_status" value="1"> Dual income or Single
            <br>
-           <input type="radio" name="marital_status" value="2">Married with one income
+           <input type="radio" name="marital_status" value="2"> Married with one income
            <br>
-           <input type="radio" name="marital_status" value="3">Head of household
+           <input type="radio" name="marital_status" value="3"> Head of household
            <p><input type="submit" value="Submit"></p>
         </div>
 
@@ -103,6 +108,31 @@
         Oh no! You have to submit your daily wages for those dates first!
       </p>
     {%endif%}
+</div>
+<br>
+<br>
+<div id="preFooter">
+  <div class="footer-social-icons">
+    <br>
+      <ul class="social-icons">
+        <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-google-plus"></i></a></li>
+      </ul>
+    </div>
+</div>
+<div class="foot">
+  <footer>
+    <br>
+    <br>
+     © Copyright Under Construction
+     <br>
+     <br>
+     Project for Google CSSI
+
+
+  </footer>
 </div>
 
 

@@ -272,3 +272,12 @@ ul.social-icons {
 .fa-google-plus:hover {
     background-color: #e25714;
 }
+.quote {
+  font-family: 'Glegoo', serif;
+}
+
+li{
+  font-family: 'Sorts Mill Goudy', serif;
+  font-size: 26px;
+  text-align: center;
+}
